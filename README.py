@@ -1,30 +1,27 @@
+import os
 def func():
-
     name = input('Enter your name : ')
     what = input(r'are you new {1} or old {0} :')
-
-    passwords = []
-
     if what == '1' :
         passwordn = input('Enter your pasword : ')
-        passwords.append(passwordn)
-        print(passwords)
-        print('Welcome')
-        what2 = input('do you want to sign again [1=true],[0=false] : ')
-        if what2 == '1' :
-            func()
-        elif what2 == '0':
-            print('godbay')
-
+        ope2 = open('passwords.txt','r').read()
+        if name != '' and passwordn != '' :
+            if passwordn in ope2 :
+                print(f'Welcome {name} you have acount and your password is {passwordn}')
+            else:
+                al = passwordn+'_'+name
+                print(f'Welcome {name} your password is {passwordn}')
+                ope = open('passwords.txt','a')
+                ope.write(f'{al}\n')
+                print('acound added')
+        else :
+            print('error !!')
     elif what == '0' :
+        ope2 = open('passwords.txt','r').read()
         passwordo = input('Enter your old password : ')
-        print(passwords)
-        if passwordo in passwords :
-            print(f'wlcome {name}')
+        if passwordo+'_'+name in ope2 :
+            print(f'welcome {name} your password is {passwordo}')
         else:
             print('your have a wrong password , make new')
             func()
-
 func()
-
-
